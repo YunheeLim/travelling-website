@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
+import ProgressBar from "./ProgressBar";
+
+const TIMER = 3000;
 
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
-  const [remainingTime, setRemainingTime] = useState(3000);
-
   useEffect(() => {
     const timer = console.log("TIMER SET");
     setTimeout(() => {
       onConfirm();
-    }, 3000);
+    }, TIMER);
 
+    // 모달 창이 닫혔을 때 타이머 제거
     return () => {
       console.log("Cleaning up timer");
       clearTimeout(timer);
@@ -27,7 +29,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
           Yes
         </button>
       </div>
-      <progress />
+      <ProgressBar timer={TIMER} />
     </div>
   );
 }
